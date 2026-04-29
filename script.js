@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const previewEl = document.getElementById("preview");
   const messageEl = document.getElementById("message");
   const historyListEl = document.getElementById("historyList");
+  const mixSound = document.getElementById("mixSound");
+  const sameSound = document.getElementById("sameSound");
 
   function setMessage(text) {
     messageEl.textContent = text;
@@ -44,15 +46,38 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 10);
   }
 
+  function loadHistory() {
+    const savedHistory = JSON.parse(localStorage.getItem("mixHistory")) || [];
+
+    savedHistory.forEach((item) => {
+      const listItem = document.createElement("li");
+      listItem.textContent = item;
+      historyListEl.appendChild(listItem);
+    });
+  }
+
   function addToHistory(firstColour, secondColour, resultColour) {
+    const mixText = `${firstColour} + ${secondColour} = ${resultColour}`;
+
     const listItem = document.createElement("li");
-    listItem.textContent = `${firstColour} + ${secondColour} = ${resultColour}`;
+    listItem.textContent = mixText;
     historyListEl.prepend(listItem);
 
-    if (historyListEl.children.length > 5) {
+    let history = JSON.parse(localStorage.getItem("mixHistory")) || [];
+    history.unshift(mixText);
+
+    if (history.length > 5) {
+      history = history.slice(0, 5);
+    }
+
+    localStorage.setItem("mixHistory", JSON.stringify(history));
+
+    while (historyListEl.children.length > 5) {
       historyListEl.removeChild(historyListEl.lastChild);
     }
   }
+
+  loadHistory();
 
   mixBtn.addEventListener("click", () => {
     const c1 = colour1El.value;
@@ -66,6 +91,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (c1 === c2) {
+      sameSound.currentTime = 0;
+      sameSound.play();
       showResult(c1.charAt(0).toUpperCase() + c1.slice(1), c1);
       setMessage(`You selected the same colour twice, so the result is still ${c1}.`);
       addToHistory(c1, c2, c1);
@@ -77,6 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const mix = mixTable[keyA] || mixTable[keyB];
 
     if (mix) {
+      mixSound.play();
       showResult(mix.colourName, mix.hex);
       setMessage(`Nice! ${c1} + ${c2} makes ${mix.colourName}.`);
       addToHistory(c1, c2, mix.colourName);
