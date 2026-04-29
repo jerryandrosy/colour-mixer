@@ -9,15 +9,12 @@
 <body>
 
   <main class="card">
-    <nav class="nav">
-      <h1>🎨 Colour Mixer</h1>
-      <a href="help.html">Help</a>
-    </nav>
-
     <header class="header">
-      <p class="subtitle">Choose two colours and see what new colour you create.</p>
+      <h1>Colour Mixer</h1>
+      <p class="subtitle">Choose two colours and see what you create.</p>
     </header>
 
+    <!-- INPUT SECTION -->
     <section class="inputs">
       <div class="field">
         <label for="colour1">Select first colour</label>
@@ -43,16 +40,13 @@
         </select>
       </div>
 
-      <div class="button-row">
-        <button id="mixBtn" class="btn">Mix Colours</button>
-        <button id="resetBtn" class="btn secondary">Reset</button>
-      </div>
-
+      <button id="mixBtn" class="btn">Mix Colours</button>
       <p id="message" class="message" aria-live="polite"></p>
     </section>
 
+    <!-- RESULT SECTION -->
     <section class="result">
-      <p class="result-title">The colour mixture you created is:</p>
+      <p class="result-title">The colour mixture you have created is:</p>
       <h2 id="resultName" class="result-name">—</h2>
 
       <div class="preview-wrap">
@@ -60,12 +54,10 @@
       </div>
     </section>
 
-    <section class="history-section">
-      <h2>Recent Mixes</h2>
-      <ul id="historyList"></ul>
-    </section>
+    <footer class="footer">
+      <a href="help.html">How it works</a>
+    </footer>
   </main>
-
   <script src="script.js"></script>
 </body>
 </html>
