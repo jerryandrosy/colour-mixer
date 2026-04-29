@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Colour Mixer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <main class="card">
+    <nav class="nav">
+      <h1>🎨 Colour Mixer</h1>
+      <a href="help.html">Help</a>
+    </nav>
+
+    <header class="header">
+      <p class="subtitle">Choose two colours and see what new colour you create.</p>
+    </header>
+
+    <section class="inputs">
+      <div class="field">
+        <label for="colour1">Select first colour</label>
+        <select id="colour1">
+          <option value="">-- Choose a colour --</option>
+          <option value="red">Red</option>
+          <option value="blue">Blue</option>
+          <option value="yellow">Yellow</option>
+          <option value="black">Black</option>
+          <option value="white">White</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="colour2">Select second colour</label>
+        <select id="colour2">
+          <option value="">-- Choose a colour --</option>
+          <option value="red">Red</option>
+          <option value="blue">Blue</option>
+          <option value="yellow">Yellow</option>
+          <option value="black">Black</option>
+          <option value="white">White</option>
+        </select>
+      </div>
+
+      <div class="button-row">
+        <button id="mixBtn" class="btn">Mix Colours</button>
+        <button id="resetBtn" class="btn secondary">Reset</button>
+      </div>
+
+      <p id="message" class="message" aria-live="polite"></p>
+    </section>
+
+    <section class="result">
+      <p class="result-title">The colour mixture you created is:</p>
+      <h2 id="resultName" class="result-name">—</h2>
+
+      <div class="preview-wrap">
+        <div id="preview" class="preview">Display colour here</div>
+      </div>
+    </section>
+
+    <section class="history-section">
+      <h2>Recent Mixes</h2>
+      <ul id="historyList"></ul>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
